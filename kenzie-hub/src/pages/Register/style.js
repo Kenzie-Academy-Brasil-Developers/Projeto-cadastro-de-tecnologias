@@ -49,6 +49,10 @@ export const StyledRegisterForm = styled.form`
     color: var(--grey-1);
   }
 
+  main > span {
+    color: var(--negative);
+  }
+
   main > label {
     color: var(--grey-0);
   }
