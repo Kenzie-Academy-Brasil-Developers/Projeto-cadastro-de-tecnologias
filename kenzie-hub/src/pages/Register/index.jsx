@@ -3,25 +3,32 @@ import logo from "../../assets/logo.png";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
+import InputMask from "react-input-mask";
+import { toast } from "react-toastify";
 
-export const Register = ({ setRegisterData, registerData }) => {
-  const formSchema = yup.object().shape({
+const formSchema = yup
+  .object({
     name: yup.string().required("Preencha seu nome"),
     email: yup.string().email("Email inválido").required("Preencha seu email"),
     password: yup
       .string()
       .required("Digite uma senha")
-      .matches(
-        "^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$",
-        "Senha deve conter no mínimo 8 caracteres com pelo menos 1 letra maiúscula, 1 letra mínuscula, 1 número e um caractere especial"
-      ),
+      .matches(/.{8,}/, "Deve conter no mínimo 8 caracteres")
+      .matches(/(\W|_)/, "Deve conter no mínimo 1 caracter especial")
+      .matches(/(\d)/, "Deve conter ao menos 1 número"),
     passwordConfirm: yup
       .string()
       .required("Confirmação da senha necessária")
-      .oneOf([yup.ref("password")], "A senha deve ser igual"),
+      .oneOf([yup.ref("password")], "As senhas devem ser iguais"),
     bio: yup.string().required("Preencha sua bio"),
     contact: yup.string().required("Preencha seu contato"),
-  });
+  })
+  .required();
+
+export const Register = () => {
+  const navigate = useNavigate();
 
   const {
     register,
@@ -30,8 +37,19 @@ export const Register = ({ setRegisterData, registerData }) => {
   } = useForm({
     resolver: yupResolver(formSchema),
   });
-  console.log(errors);
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = async (data) => {
+    delete data.passwordConfirm;
+
+    try {
+      await api.post("/users", data);
+      toast.success("Conta criada com sucesso!");
+      navigate("/");
+    } catch (error) {
+      if (error.response.data.message.toString() == "Email already exists")
+        toast.error("Email já cadastrado");
+    }
+  };
 
   return (
     <StyledRegisterForm onSubmit={handleSubmit(onSubmit)}>
@@ -94,10 +112,11 @@ export const Register = ({ setRegisterData, registerData }) => {
         <span>{errors.bio?.message}</span>
 
         <label htmlFor="formContact">Contato</label>
-        <input
+        <InputMask
           type="text"
           placeholder="Opção de contato"
           id="formContact"
+          mask="(99) 99999-9999"
           {...register("contact")}
         />
         <span>{errors.contact?.message}</span>

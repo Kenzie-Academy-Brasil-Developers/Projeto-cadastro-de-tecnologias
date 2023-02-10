@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const StyledRegisterForm = styled.form`
-  width: 500px;
-  max-width: 99%;
+  width: 370px;
+  max-width: 95%;
 
   margin: 0 auto;
 
@@ -43,18 +43,23 @@ export const StyledRegisterForm = styled.form`
   main > div > h3 {
     color: var(--grey-0);
     font-weight: 700;
+    font-size: 18px;
   }
 
   main > div > span {
     color: var(--grey-1);
+    font-weight: 400;
+    font-size: 12px;
   }
 
   main > span {
     color: var(--negative);
+    font-size: 12px;
   }
 
   main > label {
     color: var(--grey-0);
+    font-size: 12px;
   }
 
   main > input,
@@ -71,8 +76,9 @@ export const StyledRegisterForm = styled.form`
     border: none;
     border-radius: 8px;
     padding: 16px;
-    color: var(--grey-0);
-    font-weight: 700;
+    color: #ffff;
+    font-weight: 500;
+    font-size: 16px;
     margin-top: 20px;
   }
 `;
@@ -81,10 +87,13 @@ export const StyledLink = styled(Link)`
   list-style: none;
   text-decoration: none;
 
-  padding: 12px 20px;
+  padding: 12px 16px;
   border-radius: 8px;
   border: none;
 
   background-color: var(--grey-3);
   color: var(--grey-0);
+
+  font-size: 12px;
+  font-weight: 600;
 `;

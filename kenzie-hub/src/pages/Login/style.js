@@ -34,15 +34,29 @@ export const StyledLoginForm = styled.form`
   main > h3 {
     color: var(--grey-0);
     font-weight: 700;
+    font-size: 18px;
     text-align: center;
   }
 
   main > span {
     color: var(--grey-1);
+    font-size: 12px;
+    font-weight: 600;
+
+    text-align: center;
+  }
+
+  main > p {
+    color: var(--negative);
+
+    font-size: 12px;
+    font-weight: 600;
   }
 
   main > label {
     color: var(--grey-0);
+    font-weight: 400;
+    font-size: 12px;
   }
 
   main > input {
@@ -59,7 +73,8 @@ export const StyledLoginForm = styled.form`
     border-radius: 8px;
     padding: 20px;
     color: var(--grey-0);
-    font-weight: 700;
+    font-weight: 500;
+    font-size: 16px;
   }
 `;
 
@@ -68,10 +83,13 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
   text-align: center;
 
+  font-size: 16px;
+  font-weight: 500;
+
   padding: 20px;
   border-radius: 8px;
   border: none;
 
   background-color: var(--grey-1);
-  color: var(--grey-0);
+  color: #ffff;
 `;

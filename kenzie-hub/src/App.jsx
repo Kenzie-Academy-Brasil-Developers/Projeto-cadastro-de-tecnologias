@@ -1,25 +1,16 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { Register } from "./pages/Register";
 import { AppRoutes } from "./routes";
-import { api } from "./services/api";
-import "../src/styles/GlobalStyles.css";
-import * as yup from "yup";
+import { GlobalStyles } from "./styles/GlobalStyles";
+import { GlobalReset } from "./styles/GlobalReset";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const [registerData, setRegisterData] = useState({
-    name: "",
-    password: "",
-    email: "",
-    bio: "",
-    contact: "",
-    course_module: "Primeiro módulo (Introdução ao Frontend)",
-  });
-
   return (
     <div className="App">
+      <GlobalReset />
+      <GlobalStyles />
       <AppRoutes />
+      <ToastContainer position="top-center" />
     </div>
   );
 }

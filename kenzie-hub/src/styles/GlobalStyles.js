@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyles = createGlobalStyle`
 
 :root {
   --Color-primary: #ff577f;
@@ -23,3 +25,6 @@ button {
 body {
   background-color: var(--grey-4);
 }
+
+
+`;
