@@ -7,6 +7,7 @@ import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
 import { toast } from "react-toastify";
+import { Input } from "../../components/Input";
 
 const formSchema = yup
   .object({
@@ -61,65 +62,64 @@ export const Register = () => {
       </header>
 
       <main>
-        <div>
+        <div className="form__top">
           <h3>Crie sua conta</h3>
           <span>Rápido e grátis</span>
         </div>
 
-        <label htmlFor="formName">Nome</label>
-        <input
+        <Input
+          label="Nome"
           type="text"
           placeholder="Digite aqui seu nome"
-          id="formName"
+          id="name"
+          error={errors.name?.message}
           {...register("name")}
         />
-        <span>{errors.name?.message}</span>
 
-        <label htmlFor="formEmail">E-mail</label>
-        <input
+        <Input
+          label="Email"
           type="email"
           placeholder="Digite aqui seu email"
-          id="formEmail"
+          id="email"
+          error={errors.email?.message}
           {...register("email")}
         />
-        <span>{errors.email?.message}</span>
 
-        <label htmlFor="formPassword">Senha</label>
-        <input
+        <Input
+          label="Senha"
           type="password"
           placeholder="Digite aqui sua senha"
-          id="formPassword"
+          id="password"
+          error={errors.name?.message}
           {...register("password")}
         />
-        <span>{errors.password?.message}</span>
 
-        <label htmlFor="formConfirmPassword">Confirmar senha</label>
-        <input
+        <Input
+          label="Confirmar senha"
           type="password"
-          placeholder="Confirme sua senha"
-          id="formConfirmPassword"
+          placeholder="Digite sua senha novamente"
+          id="passwordConfirm"
+          error={errors.passwordConfirm?.message}
           {...register("passwordConfirm")}
         />
-        <span>{errors.passwordConfirm?.message}</span>
 
-        <label htmlFor="formBio">Bio</label>
-        <input
+        <Input
+          label="Bio"
           type="text"
           placeholder="Fale sobre você"
-          id="formBio"
+          id="bio"
+          error={errors.bio?.message}
           {...register("bio")}
         />
-        <span>{errors.bio?.message}</span>
 
-        <label htmlFor="formContact">Contato</label>
-        <InputMask
+        <Input
+          label="Contato"
           type="text"
-          placeholder="Opção de contato"
-          id="formContact"
-          mask="(99) 99999-9999"
+          placeholder="Digite aqui seu contato"
+          id="contact"
+          error={errors.contact?.message}
           {...register("contact")}
         />
-        <span>{errors.contact?.message}</span>
 
         <label htmlFor="selectModule">Selecionar módulo</label>
         <select name="" id="selectModule" {...register("course_module")}>

@@ -46,27 +46,6 @@ export const StyledLoginForm = styled.form`
     text-align: center;
   }
 
-  main > p {
-    color: var(--negative);
-
-    font-size: 12px;
-    font-weight: 600;
-  }
-
-  main > label {
-    color: var(--grey-0);
-    font-weight: 400;
-    font-size: 12px;
-  }
-
-  main > input {
-    background-color: var(--grey-2);
-    border: none;
-    border-radius: 8px;
-    padding: 16px;
-    color: var(--grey-1);
-  }
-
   main > button {
     background-color: var(--Color-primary);
     border: none;
