@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
+import { Input } from "../../components/Input";
 
 const formSchema = yup
   .object({
@@ -46,23 +47,22 @@ export const Login = ({ loggedUser, setLoggedUser }) => {
 
       <main>
         <h3>Login</h3>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          placeholder="Digite seu email"
+        <Input
+          label="Email"
           id="email"
-          {...register("email", { required: true })}
+          placeholder="Digite seu email"
+          type="email"
+          error={errors.email?.message}
+          {...register("email")}
         />
-        <p>{errors.email?.message}</p>
 
-        <label htmlFor="password">Senha</label>
-        <input
+        <Input
+          label="Senha"
           type="password"
           placeholder="Digite sua senha"
-          id="password"
-          {...register("password", { required: true })}
+          error={errors.password?.message}
+          {...register("password")}
         />
-        <p>{errors.password?.message}</p>
 
         <button type="submit">Entrar</button>
 

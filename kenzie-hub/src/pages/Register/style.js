@@ -32,7 +32,7 @@ export const StyledRegisterForm = styled.form`
     border-radius: 8px;
   }
 
-  main > div {
+  .form__top {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,13 +40,13 @@ export const StyledRegisterForm = styled.form`
     gap: 20px;
   }
 
-  main > div > h3 {
+  .form__top > h3 {
     color: var(--grey-0);
     font-weight: 700;
     font-size: 18px;
   }
 
-  main > div > span {
+  .form__top > span {
     color: var(--grey-1);
     font-weight: 400;
     font-size: 12px;
