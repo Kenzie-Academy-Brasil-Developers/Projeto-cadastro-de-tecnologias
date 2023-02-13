@@ -72,8 +72,8 @@ export const Register = () => {
           type="text"
           placeholder="Digite aqui seu nome"
           id="name"
-          error={errors.name?.message}
           {...register("name")}
+          error={errors.name?.message}
         />
 
         <Input
@@ -81,8 +81,8 @@ export const Register = () => {
           type="email"
           placeholder="Digite aqui seu email"
           id="email"
-          error={errors.email?.message}
           {...register("email")}
+          error={errors.email?.message}
         />
 
         <Input
@@ -90,8 +90,8 @@ export const Register = () => {
           type="password"
           placeholder="Digite aqui sua senha"
           id="password"
-          error={errors.name?.message}
           {...register("password")}
+          error={errors.password?.message}
         />
 
         <Input
@@ -99,8 +99,8 @@ export const Register = () => {
           type="password"
           placeholder="Digite sua senha novamente"
           id="passwordConfirm"
-          error={errors.passwordConfirm?.message}
           {...register("passwordConfirm")}
+          error={errors.passwordConfirm?.message}
         />
 
         <Input
@@ -108,8 +108,8 @@ export const Register = () => {
           type="text"
           placeholder="Fale sobre você"
           id="bio"
-          error={errors.bio?.message}
           {...register("bio")}
+          error={errors.bio?.message}
         />
 
         <Input
@@ -117,8 +117,8 @@ export const Register = () => {
           type="text"
           placeholder="Digite aqui seu contato"
           id="contact"
-          error={errors.contact?.message}
           {...register("contact")}
+          error={errors.contact?.message}
         />
 
         <label htmlFor="selectModule">Selecionar módulo</label>
