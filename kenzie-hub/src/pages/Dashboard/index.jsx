@@ -4,8 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
+import { useContext } from "react";
+import { LoginContext } from "../../contexts/LoginContext";
 
-export const Dashboard = ({ loggedUser, setLoggedUser }) => {
+export const Dashboard = () => {
+  const { setLoggedUser, loggedUser } = useContext(LoginContext);
   const navigate = useNavigate();
 
   const logout = () => {
