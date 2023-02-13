@@ -2,12 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { LoginContextProvider } from "./contexts/LoginContext";
 import { GlobalReset } from "./styles/GlobalReset";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <LoginContextProvider>
+        <App />
+      </LoginContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
