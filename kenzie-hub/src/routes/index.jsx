@@ -5,23 +5,11 @@ import { Login } from "../pages/Login";
 import { Dashboard } from "../pages/Dashboard";
 
 export const AppRoutes = () => {
-  const [loggedUser, setLoggedUser] = useState({});
-
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <Login setLoggedUser={setLoggedUser} loggedUser={loggedUser} />
-        }
-      />
+      <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route
-        path="/home"
-        element={
-          <Dashboard loggedUser={loggedUser} setLoggedUser={setLoggedUser} />
-        }
-      />
+      <Route path="/home" element={<Dashboard />} />
     </Routes>
   );
 };

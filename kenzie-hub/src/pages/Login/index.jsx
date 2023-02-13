@@ -7,6 +7,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/Input";
+import { useContext } from "react";
+import { LoginContext } from "../../contexts/LoginContext";
 
 const formSchema = yup
   .object({
@@ -15,7 +17,9 @@ const formSchema = yup
   })
   .required();
 
-export const Login = ({ loggedUser, setLoggedUser }) => {
+export const Login = () => {
+  const { setLoggedUser } = useContext(LoginContext);
+
   const navigate = useNavigate();
 
   const {
@@ -27,6 +31,7 @@ export const Login = ({ loggedUser, setLoggedUser }) => {
   });
 
   const onSubmit = async (data) => {
+    console.log(data);
     try {
       const response = await api.post("/sessions", data);
       localStorage.setItem("@TOKEN:", JSON.stringify(response.data.token));
@@ -52,16 +57,16 @@ export const Login = ({ loggedUser, setLoggedUser }) => {
           id="email"
           placeholder="Digite seu email"
           type="email"
-          error={errors.email?.message}
           {...register("email")}
+          error={errors.email?.message}
         />
 
         <Input
           label="Senha"
           type="password"
           placeholder="Digite sua senha"
-          error={errors.password?.message}
           {...register("password")}
+          error={errors.password?.message}
         />
 
         <button type="submit">Entrar</button>
