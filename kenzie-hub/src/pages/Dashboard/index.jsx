@@ -6,14 +6,19 @@ import { useState } from "react";
 import { AddTechModal } from "../../components/AddTechModal";
 import { TechContext } from "../../contexts/TechContext";
 import { DeleteAndAttModal } from "../../components/DeleteAndAttModal";
+import { Loading } from "../../components/Loading";
 
 export const Dashboard = () => {
   const { loggedUser, userLogout } = useContext(UserContext);
-  const { token, techsUser, setTechsUser } = useContext(TechContext);
+  const { token, techsUser, setTechsUser, isLoading } = useContext(TechContext);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [modalInfoOpen, setModalInfoOpen] = useState(false);
   const [selectedTech, setSelectedTech] = useState(null);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   if (loggedUser) {
     return (

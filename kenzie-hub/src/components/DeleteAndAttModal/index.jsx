@@ -19,7 +19,7 @@ export const DeleteAndAttModal = ({
 
   const onSubmit = async (data) => {
     console.log(data);
-    updateTech(selectedTech.id, data);
+    await updateTech(selectedTech.id, data);
     setModalInfoOpen(false);
   };
 
