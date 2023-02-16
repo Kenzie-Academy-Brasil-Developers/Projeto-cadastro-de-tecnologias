@@ -1,0 +1,91 @@
+import styled from "styled-components";
+
+export const StyledInfoModal = styled.div`
+  font-family: var(--font-primary);
+
+  background-color: rgb(0, 0, 0, 0.7);
+  z-index: 1;
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: var(--grey-2);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--grey-0);
+
+    width: 300px;
+    padding: 20px;
+  }
+
+  div > button {
+    background-color: var(--grey-2);
+    border: none;
+    color: var(--grey-0);
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+
+    width: 300px;
+    padding: 20px;
+    gap: 10px;
+
+    background-color: var(--grey-3);
+  }
+
+  form > label {
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--grey-0);
+  }
+
+  form > input,
+  select {
+    background-color: var(--grey-2);
+    padding: 16px;
+    border: none;
+    color: var(--grey-0);
+  }
+
+  form > button {
+    background-color: var(--Color-primary);
+    color: var(--grey-0);
+    font-weight: 500;
+    font-size: 16px;
+    padding: 16px;
+    border: none;
+
+    margin-top: 10px;
+  }
+
+  .buttons__div {
+    margin-top: 10px;
+    display: flex;
+    background-color: var(--grey-3);
+    padding: 0px;
+  }
+
+  .delete__button {
+    background-color: var(--grey-1);
+    padding: 16px;
+  }
+
+  .save__button {
+    background-color: var(--Color-primary-Negative);
+    padding: 16px;
+  }
+`;

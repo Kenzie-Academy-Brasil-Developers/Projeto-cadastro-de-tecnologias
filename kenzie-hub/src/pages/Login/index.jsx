@@ -1,14 +1,11 @@
 import logo from "../../assets/logo.png";
 import { StyledLink, StyledLoginForm } from "./style";
-import { toast } from "react-toastify";
-import { api } from "../../services/api";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/Input";
 import { useContext } from "react";
-import { LoginContext } from "../../contexts/LoginContext";
+import { UserContext } from "../../contexts/UserContext";
 
 const formSchema = yup
   .object({
@@ -18,9 +15,7 @@ const formSchema = yup
   .required();
 
 export const Login = () => {
-  const { setLoggedUser } = useContext(LoginContext);
-
-  const navigate = useNavigate();
+  const { userLogin } = useContext(UserContext);
 
   const {
     register,
@@ -31,17 +26,7 @@ export const Login = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
-    try {
-      const response = await api.post("/sessions", data);
-      localStorage.setItem("@TOKEN:", JSON.stringify(response.data.token));
-      localStorage.setItem("@USERID:", JSON.stringify(response.data.user.id));
-      setLoggedUser(response.data.user);
-      toast.success("Logado com sucesso");
-      navigate("/home");
-    } catch (error) {
-      toast.error("Dados incorretos. Tente novamente");
-    }
+    userLogin(data);
   };
 
   return (
