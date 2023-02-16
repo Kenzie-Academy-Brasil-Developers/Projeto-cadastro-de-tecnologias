@@ -12,8 +12,10 @@ export const TechContextProvider = ({ children }) => {
   const token = JSON.parse(localStorage.getItem("@TOKEN:"));
 
   const [techsUser, setTechsUser] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     async function getTechs() {
       if (token) {
         try {
@@ -27,11 +29,13 @@ export const TechContextProvider = ({ children }) => {
       } else {
         navigate("/");
       }
+      setIsLoading(false);
     }
     getTechs();
   }, []);
 
   const createTech = async (data) => {
+    setIsLoading(true);
     try {
       const response = await api.post("/users/techs", data, {
         headers: { Authorization: `Bearer ${token}` },
@@ -49,9 +53,11 @@ export const TechContextProvider = ({ children }) => {
     } catch (error) {
       toast.error(error.response.data.message);
     }
+    setIsLoading(false);
   };
 
   const deleteTech = async (tech_id) => {
+    setIsLoading(true);
     try {
       const response = await api.delete(`/users/techs/${tech_id}`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -62,9 +68,11 @@ export const TechContextProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
+    setIsLoading(false);
   };
 
   const updateTech = async (tech_id, data) => {
+    setIsLoading(true);
     try {
       const response = await api.put(`/users/techs/${tech_id}`, data, {
         headers: { Authorization: `Bearer ${token}` },
@@ -82,6 +90,7 @@ export const TechContextProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -93,6 +102,7 @@ export const TechContextProvider = ({ children }) => {
         deleteTech,
         createTech,
         updateTech,
+        isLoading,
       }}
     >
       {children}
