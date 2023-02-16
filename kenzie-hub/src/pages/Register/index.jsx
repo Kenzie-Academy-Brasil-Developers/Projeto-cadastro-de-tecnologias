@@ -3,11 +3,10 @@ import logo from "../../assets/logo.png";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { api } from "../../services/api";
-import { useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
-import { toast } from "react-toastify";
 import { Input } from "../../components/Input";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
 const formSchema = yup
   .object({
@@ -29,7 +28,7 @@ const formSchema = yup
   .required();
 
 export const Register = () => {
-  const navigate = useNavigate();
+  const { userRegister } = useContext(UserContext);
 
   const {
     register,
@@ -40,16 +39,7 @@ export const Register = () => {
   });
 
   const onSubmit = async (data) => {
-    delete data.passwordConfirm;
-
-    try {
-      await api.post("/users", data);
-      toast.success("Conta criada com sucesso!");
-      navigate("/");
-    } catch (error) {
-      if (error.response.data.message.toString() == "Email already exists")
-        toast.error("Email já cadastrado");
-    }
+    userRegister(data);
   };
 
   return (
@@ -112,11 +102,13 @@ export const Register = () => {
           error={errors.bio?.message}
         />
 
-        <Input
+        <label htmlFor="contact">Contato</label>
+        <InputMask
           label="Contato"
           type="text"
           placeholder="Digite aqui seu contato"
           id="contact"
+          mask="+55 (99) 99999-9999"
           {...register("contact")}
           error={errors.contact?.message}
         />

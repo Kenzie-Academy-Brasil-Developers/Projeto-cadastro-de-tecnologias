@@ -47,9 +47,64 @@ export const StyledDash = styled.div`
     color: var(--grey-0);
   }
 
-  main > p {
+  main > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  main > div > p {
     font-size: 16px;
     color: var(--grey-0);
+  }
+
+  main > div > button {
+    color: #ffff;
+    background-color: var(--grey-3);
+    padding: 12px 20px;
+    border: none;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  main > ul {
+    background-color: var(--grey-3);
+    padding: 22px;
+    margin-top: 20px;
+  }
+
+  main > ul > li {
+    background-color: var(--grey-4);
+    color: var(--grey-0);
+
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-top: 10px;
+
+    cursor: pointer;
+  }
+
+  main > ul > li:hover {
+    background-color: var(--grey-2);
+    color: var(--grey-0);
+
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-top: 10px;
+
+    cursor: pointer;
+  }
+
+  main > ul > li > p {
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  main > ul > li > span {
+    font-weight: 400;
+    font-size: 12px;
   }
 `;
 

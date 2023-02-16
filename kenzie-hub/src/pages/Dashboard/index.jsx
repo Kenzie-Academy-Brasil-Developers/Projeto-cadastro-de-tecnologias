@@ -1,29 +1,26 @@
 import { StyledDash, StyledLink } from "./style";
 import logo from "../../assets/logo.png";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { useEffect, useState } from "react";
-import { api } from "../../services/api";
 import { useContext } from "react";
-import { LoginContext } from "../../contexts/LoginContext";
+import { UserContext } from "../../contexts/UserContext";
+import { useState } from "react";
+import { AddTechModal } from "../../components/AddTechModal";
+import { TechContext } from "../../contexts/TechContext";
+import { DeleteAndAttModal } from "../../components/DeleteAndAttModal";
 
 export const Dashboard = () => {
-  const { setLoggedUser, loggedUser } = useContext(LoginContext);
-  const navigate = useNavigate();
+  const { loggedUser, userLogout } = useContext(UserContext);
+  const { token, techsUser, setTechsUser } = useContext(TechContext);
 
-  const logout = () => {
-    setLoggedUser({});
-    localStorage.clear();
-    toast.warning("Você saiu");
-    navigate("/");
-  };
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalInfoOpen, setModalInfoOpen] = useState(false);
+  const [selectedTech, setSelectedTech] = useState(null);
 
   if (loggedUser) {
     return (
       <StyledDash>
         <nav>
           <img src={logo} alt="" />
-          <StyledLink to={"/"} onClick={logout}>
+          <StyledLink to={"/"} onClick={userLogout}>
             <p>Sair</p>
           </StyledLink>
         </nav>
@@ -34,11 +31,37 @@ export const Dashboard = () => {
         </header>
 
         <main>
-          <h3>Que pena! Estamos em desenvolvimento</h3>
-          <p>
-            Nossa aplicação está em desenvolvimento, em breve teremos novidades
-          </p>
+          <div>
+            <p>Tecnologias</p>
+            <button onClick={() => setModalOpen(true)}>Adicionar</button>
+          </div>
+
+          <ul>
+            {loggedUser.techs
+              ? techsUser.map((tech) => {
+                  return (
+                    <li
+                      key={tech.id}
+                      onClick={() => {
+                        setSelectedTech(tech);
+                        setModalInfoOpen(true);
+                      }}
+                    >
+                      <p>{tech.title}</p>
+                      <span>{tech.status}</span>
+                    </li>
+                  );
+                })
+              : null}
+          </ul>
         </main>
+
+        <AddTechModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+        <DeleteAndAttModal
+          modalInfoOpen={modalInfoOpen}
+          setModalInfoOpen={setModalInfoOpen}
+          selectedTech={selectedTech}
+        />
       </StyledDash>
     );
   }
